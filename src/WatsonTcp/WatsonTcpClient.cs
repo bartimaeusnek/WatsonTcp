@@ -906,7 +906,7 @@ namespace WatsonTcp
                         { 
                             msgData = await WatsonCommon.ReadMessageDataAsync(msg, _Settings.StreamBufferSize).ConfigureAwait(false); 
                             MessageReceivedEventArgs args = new MessageReceivedEventArgs(null, msg.Metadata, msgData);
-                            await Task.Run(() => _Events.HandleMessageReceived(this, args));
+                            await Task.Run(() => _Events.HandleMessageReceived(this, args), _Token);
                         }
                         else if (_Events.IsUsingStreams)
                         {
